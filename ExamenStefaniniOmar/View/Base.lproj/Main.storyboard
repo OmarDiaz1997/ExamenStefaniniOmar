@@ -3,7 +3,6 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -158,7 +157,14 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="c47-Vv-66u" secondAttribute="trailing" constant="20" id="n9v-dy-aoX"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Inicio" id="6P1-Sj-P3L"/>
+                    <navigationItem key="navigationItem" title="Inicio" id="6P1-Sj-P3L">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="Brc-lH-mhv">
+                            <color key="tintColor" systemColor="systemGrayColor"/>
+                            <connections>
+                                <action selector="refreshActionButton:" destination="BYZ-38-t0r" id="C0A-Gg-d2m"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="homeTableView" destination="c47-Vv-66u" id="KLC-hh-v6x"/>
                         <outlet property="searchButton" destination="quF-nx-lUy" id="dJD-8e-JpU"/>
@@ -509,20 +515,7 @@
                             <constraint firstItem="X1B-dG-NCV" firstAttribute="top" secondItem="s41-Rp-oGw" secondAttribute="top" id="vim-qk-Dwl"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Detalles" id="hhw-2r-nNO">
-                        <rightBarButtonItems>
-                            <barButtonItem image="star.fill" catalog="system" id="piI-bu-kJS">
-                                <color key="tintColor" systemColor="systemYellowColor"/>
-                            </barButtonItem>
-                            <barButtonItem image="trash" catalog="system" id="Nnp-sF-E8e">
-                                <color key="tintColor" systemColor="systemRedColor"/>
-                            </barButtonItem>
-                            <barButtonItem id="UQm-4m-Po6">
-                                <imageReference key="image" image="exclamationmark.triangle" catalog="system" variableValue="0.0"/>
-                                <color key="tintColor" systemColor="systemGray2Color"/>
-                            </barButtonItem>
-                        </rightBarButtonItems>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Detalles" id="hhw-2r-nNO"/>
                     <connections>
                         <outlet property="asuntoDetails" destination="Zo1-Id-gQF" id="gAZ-5y-TfR"/>
                         <outlet property="correoEmisorDetails" destination="M9r-oh-3lB" id="jG6-CJ-9VU"/>
@@ -583,7 +576,6 @@
         <image name="house" catalog="system" width="128" height="104"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="star" catalog="system" width="128" height="116"/>
-        <image name="star.fill" catalog="system" width="128" height="116"/>
         <image name="trash" catalog="system" width="117" height="128"/>
         <image name="trash.fill" catalog="system" width="119" height="128"/>
         <image name="user" width="512" height="512"/>
@@ -595,6 +587,9 @@
         </systemColor>
         <systemColor name="systemGray3Color">
             <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

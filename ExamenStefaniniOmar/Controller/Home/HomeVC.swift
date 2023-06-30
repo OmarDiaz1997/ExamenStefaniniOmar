@@ -41,14 +41,13 @@ class HomeVC: UIViewController {
     }
     
     func loadDestacado(idMessage: Int){
-        if let index = data.firstIndex(where: { $0.id == idMessage }) {
-            print("El nombre \(idMessage) se encuentra en el índice \(index) del arreglo.")
-            if data[index].destacado == true{
-                data[index].destacado = false
-                homeTableView.reloadData()
+        if let index = EmailViewModel.shared.globalData.firstIndex(where: { $0.id == idMessage }) {
+            if EmailViewModel.shared.globalData[index].destacado == true{
+                EmailViewModel.shared.globalData[index].destacado = false
+                loadData()
             }else{
-                data[index].destacado = true
-                homeTableView.reloadData()
+                EmailViewModel.shared.globalData[index].destacado = true
+                loadData()
             }
         }
     }
@@ -94,7 +93,11 @@ class HomeVC: UIViewController {
     
     func searchMessages(messages: [Message]){
         if messages.isEmpty{
-            
+            let alert = UIAlertController(title: "Alerta", message: "No hay datos que coincidan en la busqueda", preferredStyle: .alert)
+            let Aceptar = UIAlertAction(title: "Aceptar", style: .default, handler: { action in
+              })
+            alert.addAction(Aceptar)
+            self.present(alert,animated: false)
         }else{
             data = messages
             homeTableView.reloadData()
@@ -109,7 +112,11 @@ class HomeVC: UIViewController {
         
         let filteredMessage = data.filter { $0.asunto == searchText }
         searchMessages(messages: filteredMessage)
-        
+    }
+    
+    
+    @IBAction func refreshActionButton(_ sender: Any) {
+        loadData()
     }
     
 }
@@ -131,15 +138,23 @@ extension HomeVC: UITableViewDataSource, UITableViewDelegate{
         cell.spamDelegate = self
         
         if data[indexPath.row].destacado == true {
-            cell.destacadoButton.tintColor = .yellow
+            let image = UIImage(systemName: "star.fill")
+            cell.destacadoButton.setImage(image, for: .normal)
+            cell.destacadoButton.tintColor = .systemYellow
         }else{
-            cell.destacadoButton.setBackgroundImage(UIImage(named: "star.fill"), for: .normal)
+            let image = UIImage(systemName: "star")
+            cell.destacadoButton.setImage(image, for: .normal)
+            cell.destacadoButton.tintColor = .systemYellow
         }
         
         if data[indexPath.row].spam == true {
-            cell.spamButton.tintColor = .darkGray
+            let image = UIImage(systemName: "exclamationmark.triangle.fill")
+            cell.spamButton.setImage(image, for: .normal)
+            cell.spamButton.tintColor = .systemGray2
         }else{
-            cell.spamButton.tintColor = .gray
+            let image = UIImage(systemName: "exclamationmark.triangle")
+            cell.spamButton.setImage(image, for: .normal)
+            cell.spamButton.tintColor = .systemGray6
         }
         
         cell.configure(id: data[indexPath.row].id)
